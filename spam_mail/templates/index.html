@@ -1,0 +1,25 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spam Detection</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+</head>
+<body>
+    <div style="text-align: center;">
+        <h1>Spam Detection</h1>
+        <form action="{% url 'predict' %}" method="post">
+            {% csrf_token %}
+            <label for="email">Enter Email:</label>
+            <input type="text" name="email" id="email" required>
+            <button type="submit">Predict</button>
+        </form>
+    </div>
+    
+    {% if result %}
+        <h2>Prediction: <span class="result">{{ result }}</span></h2>
+    {% endif %}
+</body>
+</html>
